@@ -9,9 +9,9 @@ A flexible architecture supports to generate multi-variable data with any combin
 
 - **Dependency capturing**: ANDS learns dependency in a time-window context rectangular,
   including both temporal dependency and attribute dependency.
-- **Network structure**: TGAN uses CNN to extract dependent context features, gaussian mixture layers to predict continuous attributes,
+- **Network structure**: ANDS uses CNN to extract dependent context features, gaussian mixture layers to predict continuous attributes,
   and softmax layers to predict discrete attributes.
-- **Application dataset**: [UGR'16: A New Dataset for the Evaluation of Cyclostationarity-Based Network IDSs](https://nesg.ugr.es/nesg-ugr16/)
+- **Application dataset**: UGR'16: A New Dataset for the Evaluation of Cyclostationarity-Based Network IDSs [[link]](https://nesg.ugr.es/nesg-ugr16/)
 
 
 ## Installment and settings
