@@ -37,8 +37,7 @@ these are string values or not.
 
 Prepare the training data and test data in two folders under the input_data folders.
 
-> input_folder/train_set/*.csv  
-input_folder/test_set/*.csv
+> input_folder/train_set/*.csv
 
 ### Step 2. Make the nn-fitting data
 
@@ -47,10 +46,17 @@ and transfer the raw data to time-window (X, y) pair set.
 
 > python3 makedata.py
 
-### Step 3. Fitting the ANDS model
+### Step 3. Define the model settings by config.ini
+
+Following the example config.ini under the src folder, we can set the attributes index of the training data, as well as the discrete attribute category number. 
+
+> continuous_list = [1,2,3,4,5,6,7,8,9,10]
+discrete_list = {11:2, 13:3}
+
+### Step 4. Fitting the ANDS model
 
 > python3 runner.py -train
 
-### Step 4. Then easily generate any data
+### Step 5. Then easily generate any data
 
 > python3 runner.py -gen
