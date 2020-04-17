@@ -31,11 +31,17 @@ A flexible architecture supports to generate multi-variable data with any combin
 * **Discrete columns**: Columns that only contain a finite number of possible values, wether
 these are string values or not.
 
-## Python Quickstart
+## Play with our demo on UGR16 network traffic flow dataset
+
+With attached trained models, just run the follow command to generate synthetic UGR'16 data:
+
+> python3 runner.py -genfolder
+
+## To train your own data
 
 ### Step 1. Prepare your data
 
-Prepare the training data and test data in two folders under the input_data folders.
+Prepare the training data and test data in two folders under the input_data folders. (We already put example csv files)
 
 > input_folder/train_set/*.csv
 
@@ -50,13 +56,16 @@ and transfer the raw data to time-window (X, y) pair set.
 
 Following the example config.ini under the src folder, we can set the attributes index of the training data, as well as the discrete attribute category number. 
 
-> continuous_list = [1,2,3,4,5,6,7,8,9,10]
-discrete_list = {11:2, 13:3}
+
+| settings | explanation |
+| --- | --- |
+| continuous_list | the index of the continuous attributes in your dataframe |
+| discrete_list | the index of the discrete attributes in your dataframe | 
+| discrete_category_num | the number of classification categories for each discrete attributes |
+| memory_height | the time-window that wanted to be calucated as dependency |
+| input_feature_num | total number of attribute in your dataframe (width)|
+
 
 ### Step 4. Fitting the ANDS model
 
 > python3 runner.py -train
-
-### Step 5. Then easily generate any data
-
-> python3 runner.py -gen
