@@ -454,15 +454,15 @@ def test(this_ip):
                 #    input()
             else: # special port
                 pred_num = ncp.discrete_sample(out_)
-                print(task_key, pred_num)
+                #print(task_key, pred_num)
                 #print(samples)
                 #print(outputs)
                 #print(rely_attr[task_key])
                 interv = (pred_num-1024) * 100 + 1024
                 decode_port = pred_num if pred_num < 1024 else np.random.randint(interv, interv+100)
-                print(decode_port/65535.0)
+                #print(decode_port/65535.0)
                 if decode_port > 65535:
-                    print(pred_num, interv)
+                    #print(pred_num, interv)
                     decode_port = 65535
                 samples[rely_attr[task_key]-1] = decode_port/65535.0
                 outputs[rely_attr[task_key]-1] = decode_port/65535.0

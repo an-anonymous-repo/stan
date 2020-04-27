@@ -33,7 +33,7 @@ these are string values or not.
 
 ## Play with our demo on UGR16 network traffic flow dataset
 
-With attached trained models, just run the follow command to generate synthetic UGR'16 data:
+With attached trained models, just run the follow command to generate synthetic UGR'16 data, and the generated data will be stored in the folder "generated_data":
 
 > python3 runner.py -genfolder
 
