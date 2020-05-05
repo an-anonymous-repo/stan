@@ -27,7 +27,7 @@ from sklearn.preprocessing import OneHotEncoder
 # initialize config
 os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# device = torch.device("cpu")
+#device = torch.device("cpu")
 
 # 0 is continuous
 # 1 is discrete
@@ -76,10 +76,24 @@ def save_model(name, epoch, model):
     checkpoint = './saved_model/model_%d'%name + '/ep%d.pkl'%epoch
     torch.save(model.state_dict(), checkpoint)
 
+from collections import OrderedDict
+def cpu_loading(model, checkpoint):
+    state_dict = torch.load(checkpoint, map_location=device)
+    new_state_dict = OrderedDict()
+    for k, v in state_dict.items():
+        name = k[7:] # remove module.
+        new_state_dict[name] = v
+    model.load_state_dict(new_state_dict)
+    return model
+
 def load_model(name, epoch, model):
     checkpoint = './saved_model/model_%d'%name + '/%s.pkl'%epoch
-    model.load_state_dict(torch.load(checkpoint))
-
+    #model.load_state_dict(torch.load(checkpoint))
+    print(name, model, epoch)
+    if device.type == 'cuda':
+        model.load_state_dict(torch.load(checkpoint, map_location=device))
+    else:
+        model = cpu_loading(model, checkpoint)
 
 from torchsummary import summary
 #summary(model_list[1].cuda(), (memory_height, traffic_feature_num))
@@ -94,7 +108,7 @@ bin_width = {
         }
 #bin_width = model.mdn_cfgs['bin_width']
 bin_width = 1/200.0
-if torch.cuda.device_count() > 1:
+if device.type == 'cuda' and torch.cuda.device_count() > 1:
     for key in sorted(model_list.keys()):
         model_list[key] = nn.DataParallel(model_list[key])
         model_list[key].to(device)
