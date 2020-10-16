@@ -92,11 +92,13 @@ def runner_train(args, train_file):
 ```
 ## Example data making and model training cases
 
-> example/artificial_data_maker.py
+> examples/artificial_data_maker.py
 
-> example/ugr16_data_maker.py
+> examples/ugr16_data_maker.py
 
+## Trained model for UGR netflow data generation
 
+> examples/saved_model
 
 <!-- ## Frequently Used Command
 > head 10 data_ugr16/pr_last_training.csv > data_ugr16/pr_last_tinytrain.csv
